@@ -27,7 +27,7 @@ public class LoanCalculatorTest extends BaseClass {
 		loanCalculator.clickOnWorkOutBorrowBtn();
 
 		String actualEstimatedAmount = loanCalculator.getApplicationEstimatedBorrowAmount();
-		String expectedEstimatedAmount = String.valueOf(excel.getNumericData("Calculator", 1, 10));
+		String expectedEstimatedAmount = String.valueOf(excel.getStringData("Calculator", 1, 10));
 
 		Assert.assertTrue(actualEstimatedAmount.equals(expectedEstimatedAmount));
 	}
@@ -59,6 +59,7 @@ public class LoanCalculatorTest extends BaseClass {
 		loanCalculator.enterLivingExpenses("1");
 		loanCalculator.clickOnWorkOutBorrowBtn();
 		String actualErrorMessage = loanCalculator.getBorrowErrorMessage();
+		System.out.println(loanCalculator.getBorrowErrorMessage());
 		String expectedErrorMessage = excel.getStringData("Misc", 1, 0);
 		
 		Assert.assertTrue(actualErrorMessage.equals(expectedErrorMessage));

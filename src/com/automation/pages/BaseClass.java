@@ -5,7 +5,9 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 import com.automation.utility.BrowserFactory;
 import com.automation.utility.ConfigDataProvider;
@@ -30,26 +32,24 @@ public class BaseClass {
 		excel = new ExcelDataProvider();
 		config = new ConfigDataProvider();
 		helper = new Helper();
-		
+		System.out.println("Suite starts");
+		System.out.println("Browser used : " + config.getBrowser());
+		System.out.println("App Url : " + config.getAppURL());
 //		report = new ExtentReports();
 //		ExtentHtmlReporter extent = new ExtentHtmlReporter(new File(System.getProperty("user.dir")+"/Report/ANZLoanCalculator.html"));
 //		report.attachReporter(extent);
 	}
 	
-	@BeforeClass
+	
+	
+	@BeforeMethod
 	public void setUp()
 	{
-		System.out.println("Suite starts");
-		System.out.println("Browser used : " + config.getBrowser());
-		System.out.println("App Url : " + config.getAppURL());
+		
 		driver = BrowserFactory.startApplication(driver, config.getBrowser(), config.getAppURL());
 	}
 	
-	@AfterClass
-	public void tearDown()
-	{
-		BrowserFactory.closeBrowser(driver);
-	}
+	
 	
 	@AfterMethod
 	public void tearDownMethod(ITestResult result)
@@ -59,7 +59,7 @@ public class BaseClass {
 		{
 			helper.captureScreenShot(driver);
 		}
-		
+		BrowserFactory.closeBrowser(driver);
 //		report.flush();    //After each method it will keep on adding the report in a single report file
 	}
 

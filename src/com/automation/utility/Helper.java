@@ -22,7 +22,7 @@ public class Helper {
 		
 		try
 		{
-			FileHandler.copy(src, new File("./ScreenShots/LoanCalculator_" + getCurrentDatetime()));
+			FileHandler.copy(src, new File("./ScreenShots/LoanCalculator_" + getCurrentDatetime()+".png"));
 		}
 		catch(Exception e)
 		{
